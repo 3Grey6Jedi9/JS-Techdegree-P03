@@ -71,3 +71,33 @@ design.addEventListener("change", function(){
 
 })
 
+
+// Providing life to the 'Activities Section'
+
+const activities = document.getElementById('activities');
+const activities_total_cost = document.getElementById('activities-cost');
+let partial_costs = [];
+
+activities.addEventListener('change', function(){
+    const checkbox = event.target;
+    const cost = parseInt(checkbox.dataset.cost)
+    if (checkbox.checked) {
+
+        partial_costs.push(cost)
+    } else  {
+        const index = partial_costs.indexOf(cost);
+
+      partial_costs.splice(index, 1);
+
+    }
+
+    let sum = 0;
+    for (let i=0; i<partial_costs.length; i++) {
+
+        sum += partial_costs[i];
+
+    }
+    activities_total_cost.innerHTML = `$ ${sum}`
+
+
+})
