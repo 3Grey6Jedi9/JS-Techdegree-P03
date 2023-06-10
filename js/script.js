@@ -47,6 +47,7 @@ design.addEventListener("change", function(){
     switch (design.value) {
 
         case "js puns":
+            color.innerHTML = '';
             let html1 =`<option selected hidden>Select a design theme above</option>
                 <option data-theme="js puns" value="cornflowerblue">Cornflower Blue (JS Puns shirt only)</option>
                 <option data-theme="js puns" value="darkslategrey">Dark Slate Grey (JS Puns shirt only)</option>
@@ -56,6 +57,7 @@ design.addEventListener("change", function(){
             break;
 
         case "heart js":
+            color.innerHTML = '';
             let html2 =`
             <option selected hidden>Select a design theme above</option>
             <option data-theme="heart js" value="tomato">Tomato (I &#9829; JS shirt only)</option>
@@ -69,4 +71,3 @@ design.addEventListener("change", function(){
 
 })
 
-// Solve one more thing question 4
