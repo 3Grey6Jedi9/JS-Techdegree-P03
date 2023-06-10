@@ -47,13 +47,26 @@ design.addEventListener("change", function(){
     switch (design.value) {
 
         case "js puns":
-            let html =`<option selected hidden>Select a design theme above</option>
+            let html1 =`<option selected hidden>Select a design theme above</option>
                 <option data-theme="js puns" value="cornflowerblue">Cornflower Blue (JS Puns shirt only)</option>
                 <option data-theme="js puns" value="darkslategrey">Dark Slate Grey (JS Puns shirt only)</option>
                 <option data-theme="js puns" value="gold">Gold (JS Puns shirt only)</option>`
 
-            color.insertAdjacentHTML("beforeend",html);
+            color.insertAdjacentHTML("beforeend",html1);
+            break;
+
+        case "heart js":
+            let html2 =`
+            <option selected hidden>Select a design theme above</option>
+            <option data-theme="heart js" value="tomato">Tomato (I &#9829; JS shirt only)</option>
+                <option data-theme="heart js" value="steelblue">Steel Blue (I &#9829; JS shirt only)</option> 
+                <option data-theme="heart js" value="dimgrey">Dim Grey (I &#9829; JS shirt only)</option> 
+              `
+            color.insertAdjacentHTML("beforeend",html2);
+            break;
     }
 
 
 })
+
+// Solve one more thing question 4
