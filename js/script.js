@@ -27,3 +27,33 @@ other_job.addEventListener("change", function(){
 
 
 })
+
+
+// T-shirt Info Section
+
+const colorSelect = document.getElementById("color");
+colorSelect.disabled = true;
+
+const design = document.getElementById('design');
+
+const color = document.getElementById('color');
+
+color.innerHTML = '';
+
+design.addEventListener("change", function(){
+
+    colorSelect.disabled = false;
+
+    switch (design.value) {
+
+        case "js puns":
+            let html =`<option selected hidden>Select a design theme above</option>
+                <option data-theme="js puns" value="cornflowerblue">Cornflower Blue (JS Puns shirt only)</option>
+                <option data-theme="js puns" value="darkslategrey">Dark Slate Grey (JS Puns shirt only)</option>
+                <option data-theme="js puns" value="gold">Gold (JS Puns shirt only)</option>`
+
+            color.insertAdjacentHTML("beforeend",html);
+    }
+
+
+})
