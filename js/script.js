@@ -150,6 +150,7 @@ payment_method.addEventListener('change', function(){
 
 const submitButton = document.querySelector('form button[type="submit"]');
 const nameInput = document.getElementById("name");
+const emailInput = document.getElementById('email')
 
 submitButton.addEventListener('click', function(event){
 
@@ -157,6 +158,10 @@ submitButton.addEventListener('click', function(event){
     if (nameInput.value === '') {
 
          event.preventDefault();
+
+    } else if (emailInput.value === '') { // Create a regular expresion
+
+
 
     }
 
