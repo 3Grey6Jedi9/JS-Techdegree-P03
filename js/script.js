@@ -101,3 +101,48 @@ activities.addEventListener('change', function(){
 
 
 })
+
+// Payment Methods
+
+const payment_method = document.querySelector('.payment-methods #payment');
+const credit_card = document.getElementById('credit-card');
+const paypal = document.getElementById('paypal');
+const bitcoin = document.getElementById('bitcoin');
+
+credit_card.style.display= "block";
+paypal.style.display = "none";
+bitcoin.style.display = "none";
+
+
+payment_method.addEventListener('change', function(){
+
+    switch (payment_method.value) {
+
+
+        case "credit-card":
+            credit_card.style.display= "block";
+            paypal.style.display = "none";
+            bitcoin.style.display = "none";
+            break;
+        case "paypal":
+            credit_card.style.display= "none";
+            paypal.style.display = "block";
+            bitcoin.style.display = "none";
+            break;
+        case "bitcoin":
+            credit_card.style.display= "none";
+            paypal.style.display = "none";
+            bitcoin.style.display = "block";
+            break;
+        default:
+            credit_card.style.display= "block";
+            paypal.style.display = "none";
+            bitcoin.style.display = "none";
+            break;
+
+}
+
+})
+
+
+
