@@ -38,7 +38,7 @@ const design = document.getElementById('design');
 
 const color = document.getElementById('color');
 
-color.innerHTML = '';
+color.innerHTML = `<option selected hidden>Select a design theme above</option>`;
 
 design.addEventListener("change", function(){
 
@@ -48,7 +48,7 @@ design.addEventListener("change", function(){
 
         case "js puns":
             color.innerHTML = '';
-            let html1 =`<option selected hidden>Select a design theme above</option>
+            let html1 =`<option selected hidden>Select a color for the theme selected</option>
                 <option data-theme="js puns" value="cornflowerblue">Cornflower Blue (JS Puns shirt only)</option>
                 <option data-theme="js puns" value="darkslategrey">Dark Slate Grey (JS Puns shirt only)</option>
                 <option data-theme="js puns" value="gold">Gold (JS Puns shirt only)</option>`
@@ -59,7 +59,7 @@ design.addEventListener("change", function(){
         case "heart js":
             color.innerHTML = '';
             let html2 =`
-            <option selected hidden>Select a design theme above</option>
+            <option selected hidden>Select a color for the theme selected</option>
             <option data-theme="heart js" value="tomato">Tomato (I &#9829; JS shirt only)</option>
                 <option data-theme="heart js" value="steelblue">Steel Blue (I &#9829; JS shirt only)</option> 
                 <option data-theme="heart js" value="dimgrey">Dim Grey (I &#9829; JS shirt only)</option> 
