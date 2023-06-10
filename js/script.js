@@ -147,13 +147,21 @@ payment_method.addEventListener('change', function(){
 
 // Form Validation
 
-const submit = document.getElementsByTagName('form');
-const submitButton = form.querySelector('button[type="submit"]');
 
-submitButton.addEventListener('click', function(){
+const submitButton = document.querySelector('form button[type="submit"]');
+const nameInput = document.getElementById("name");
+
+submitButton.addEventListener('click', function(event){
 
 
+    if (nameInput.value === '') {
+
+         event.preventDefault();
+
+    }
 
 })
+
+
 
 
