@@ -191,8 +191,17 @@ submitButton.addEventListener('click', function(event){
 
     } else if (payment_method.value === 'credit-card' && isCardNumberValid(card_Number.value) === false) {
 
+        event.preventDefault();
 
 
+    } else if (payment_method.value === 'credit-card' && isZipValid(zipCode.value) === false) {
+
+        event.preventDefault();
+
+
+    } else if (payment_method.value === 'credit-card' && isCVValid(cvv.value) === false) {
+
+        event.preventDefault();
 
     }
 
