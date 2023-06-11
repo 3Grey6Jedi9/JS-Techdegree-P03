@@ -151,6 +151,25 @@ payment_method.addEventListener('change', function(){
 const submitButton = document.querySelector('form button[type="submit"]');
 const nameInput = document.getElementById("name");
 const emailInput = document.getElementById('email')
+const activities_checkboxes = document.querySelectorAll('#activities input[type="checkbox"]');
+let anyChecked = false;
+
+// Checking if there is at least one activity checked
+
+activities_checkboxes.forEach(function (checkbox){
+
+    checkbox.addEventListener('change', function(){
+
+        anyChecked = Array.from(activities_checkboxes).some(function(checkbox){
+
+            return checkbox.checked;
+
+        });
+
+    })
+
+})
+
 
 submitButton.addEventListener('click', function(event){
 
@@ -163,6 +182,10 @@ submitButton.addEventListener('click', function(event){
 
         event.preventDefault();
 
+    } else if (anyChecked === false) {
+
+            event.preventDefault();
+
     }
 
 })
@@ -171,7 +194,7 @@ submitButton.addEventListener('click', function(event){
 function isEmailValid(email) {
 
     const email_pattern = /[\w\-.]+@[a-zA-Z\d\-]+(\.[a-zA-Z\d\-]+)*\.[a-zA-Z]{2,}/;
-    return pattern.test(email);
+    return email_pattern.test(email);
 
 }
 
