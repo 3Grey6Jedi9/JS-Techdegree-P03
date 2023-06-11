@@ -176,6 +176,7 @@ activities_checkboxes.forEach(function (checkbox){
 
 // Submitting the form and  Visual Validation Errors
 
+
 submitButton.addEventListener('click', function(event){
 
 
@@ -216,7 +217,19 @@ submitButton.addEventListener('click', function(event){
     } else {}
 
 
-        if (payment_method.value === 'credit-card' && isCardNumberValid(card_Number.value) === false) {
+        if (payment_method.value === 'select method') {
+
+            event.preventDefault();
+            payment_method.parentElement.classList.add('not-valid');
+            payment_method.parentElement.classList.remove('valid');
+            // And any class to the other labels of the credit card
+
+        }  else {
+
+            payment_method.parentElement.classList.add('valid');
+            payment_method.parentElement.classList.remove('not-valid');
+
+            if (payment_method.value === 'credit-card' && isCardNumberValid(card_Number.value) === false) {
 
         event.preventDefault();
         card_Number.parentElement.classList.add('not-valid');
@@ -260,8 +273,14 @@ submitButton.addEventListener('click', function(event){
 
         }
 
+
+
+        }
+
+
 })
 
+// End of the function that manages the submition
 
 function isEmailValid(email) {
 
