@@ -185,29 +185,80 @@ submitButton.addEventListener('click', function(event){
          nameInput.parentElement.classList.add('not-valid');
          nameInput.parentElement.classList.remove('valid');
 
-    } else if (isEmailValid(emailInput.value) === false) {
+    } else {
 
-        event.preventDefault();
-
-    } else if (anyChecked === false) {
-
-        event.preventDefault();
-
-    } else if (payment_method.value === 'credit-card' && isCardNumberValid(card_Number.value) === false) {
-
-        event.preventDefault();
-
-
-    } else if (payment_method.value === 'credit-card' && isZipValid(zipCode.value) === false) {
-
-        event.preventDefault();
-
-
-    } else if (payment_method.value === 'credit-card' && isCVValid(cvv.value) === false) {
-
-        event.preventDefault();
+        nameInput.parentElement.classList.add('valid');
+        nameInput.parentElement.classList.remove('not-valid');
 
     }
+
+        if (isEmailValid(emailInput.value) === false) {
+
+        event.preventDefault();
+        emailInput.parentElement.classList.add('not-valid');
+        emailInput.parentElement.classList.remove('valid');
+
+
+    } else {
+
+            emailInput.parentElement.classList.add('valid');
+            emailInput.parentElement.classList.remove('not-valid');
+
+
+        }
+
+
+        if (anyChecked === false) {
+
+        event.preventDefault();
+
+
+    } else {}
+
+
+        if (payment_method.value === 'credit-card' && isCardNumberValid(card_Number.value) === false) {
+
+        event.preventDefault();
+        card_Number.parentElement.classList.add('not-valid');
+        card_Number.parentElement.classList.remove('valid');
+
+
+    } else {
+
+            card_Number.parentElement.classList.add('valid');
+            card_Number.parentElement.classList.remove('not-valid');
+
+        }
+
+        if (payment_method.value === 'credit-card' && isZipValid(zipCode.value) === false) {
+
+        event.preventDefault();
+        zipCode.parentElement.classList.add('not-valid');
+        zipCode.parentElement.classList.remove('valid');
+
+
+
+    } else {
+
+            zipCode.parentElement.classList.add('valid');
+            zipCode.parentElement.classList.remove('not-valid');
+
+
+        }
+
+
+        if (payment_method.value === 'credit-card' && isCVValid(cvv.value) === false) {
+
+        event.preventDefault();
+        cvv.parentElement.classList.add('not-valid');
+        cvv.parentElement.classList.remove('valid');
+
+    } else {
+
+            cvv.parentElement.classList.add('valid');
+            cvv.parentElement.classList.remove('not-valid');
+
+        }
 
 })
 
