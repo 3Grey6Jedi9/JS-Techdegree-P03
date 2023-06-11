@@ -174,6 +174,8 @@ activities_checkboxes.forEach(function (checkbox){
 })
 
 
+// Submitting the form
+
 submitButton.addEventListener('click', function(event){
 
 
@@ -255,5 +257,18 @@ activities_checkboxes.forEach(function(checkbox){
 
 
 })
+
+
+
+// Visual Validation Errors
+
+
+submitButton.addEventListener('click', function(event){
+
+
+    // Add separate if conditions
+
+})
+
 
 
