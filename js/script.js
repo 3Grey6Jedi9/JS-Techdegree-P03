@@ -174,7 +174,7 @@ activities_checkboxes.forEach(function (checkbox){
 })
 
 
-// Submitting the form
+// Submitting the form and  Visual Validation Errors
 
 submitButton.addEventListener('click', function(event){
 
@@ -182,6 +182,8 @@ submitButton.addEventListener('click', function(event){
     if (nameInput.value === '') {
 
          event.preventDefault();
+         nameInput.parentElement.classList.add('not-valid');
+         nameInput.parentElement.classList.remove('valid');
 
     } else if (isEmailValid(emailInput.value) === false) {
 
@@ -260,15 +262,8 @@ activities_checkboxes.forEach(function(checkbox){
 
 
 
-// Visual Validation Errors
 
 
-submitButton.addEventListener('click', function(event){
-
-
-    // Add separate if conditions
-
-})
 
 
 
