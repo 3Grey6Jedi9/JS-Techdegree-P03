@@ -153,6 +153,9 @@ const nameInput = document.getElementById("name");
 const emailInput = document.getElementById('email')
 const activities_checkboxes = document.querySelectorAll('#activities input[type="checkbox"]');
 let anyChecked = false;
+const card_Number = '';
+const zipCode = '';
+const cvv = '';
 
 // Checking if there is at least one activity checked
 
@@ -185,6 +188,13 @@ submitButton.addEventListener('click', function(event){
     } else if (anyChecked === false) {
 
             event.preventDefault();
+
+    }
+
+    if (payment_method.value === 'credit-card') {
+
+
+
 
     }
 
