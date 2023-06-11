@@ -237,4 +237,23 @@ function isCVValid(cvv){
 
 }
 
+// Making the Activities Section more accessible
+
+activities_checkboxes.forEach(function(checkbox){
+
+    checkbox.addEventListener('focus', function(){
+
+        checkbox.parentNode.classList.add('focus');
+
+    })
+
+    checkbox.addEventListener('blur', function(){
+
+        checkbox.parentNode.classList.remove('focus');
+
+    })
+
+
+})
+
 
