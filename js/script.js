@@ -159,14 +159,21 @@ submitButton.addEventListener('click', function(event){
 
          event.preventDefault();
 
-    } else if (emailInput.value === '') { // Create a regular expresion
+    } else if (isEmailValid(emailInput.value) === false) {
 
-
+        event.preventDefault();
 
     }
 
 })
 
+
+function isEmailValid(email) {
+
+    const email_pattern = /[\w\-.]+@[a-zA-Z\d\-]+(\.[a-zA-Z\d\-]+)*\.[a-zA-Z]{2,}/;
+    return pattern.test(email);
+
+}
 
 
 
