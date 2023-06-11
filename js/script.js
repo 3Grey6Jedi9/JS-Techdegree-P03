@@ -153,9 +153,9 @@ const nameInput = document.getElementById("name");
 const emailInput = document.getElementById('email')
 const activities_checkboxes = document.querySelectorAll('#activities input[type="checkbox"]');
 let anyChecked = false;
-const card_Number = '';
-const zipCode = '';
-const cvv = '';
+const card_Number = document.getElementById('cc-num');
+const zipCode = document.getElementById('zip');
+const cvv = document.getElementById('cvv');
 
 // Checking if there is at least one activity checked
 
@@ -187,11 +187,9 @@ submitButton.addEventListener('click', function(event){
 
     } else if (anyChecked === false) {
 
-            event.preventDefault();
+        event.preventDefault();
 
-    }
-
-    if (payment_method.value === 'credit-card') {
+    } else if (payment_method.value === 'credit-card' && isCardNumberValid(card_Number.value) === false) {
 
 
 
@@ -208,5 +206,26 @@ function isEmailValid(email) {
 
 }
 
+function isCardNumberValid(cardNumber){
+
+    const cardNumber_pattern = /^[\d]{13,16}$/m;
+    return cardNumber_pattern.test(cardNumber);
+
+}
+
+function isZipValid(zip){
+
+    const zip_pattern = /^[\d]{5}$/m;
+    return zip_pattern.test(zip);
+
+}
+
+function isCVValid(cvv){
+
+    const cvv_pattern = /^[\d]{3}$/m;
+    return cvv_pattern.test(cvv);
+
+
+}
 
 
