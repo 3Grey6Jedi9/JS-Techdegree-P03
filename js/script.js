@@ -99,8 +99,36 @@ activities.addEventListener('change', function(){
     }
     activities_total_cost.innerHTML = `$ ${sum}`
 
+    const restCheckboxes = Array.from(activities.getElementsByTagName('input')).filter(function(checkbox) {
+      return checkbox.name !== 'all';
+    });
 
-})
+    const mainCheckbox = activities.querySelector('input[name="all"]');
+
+     if (checkbox.name === 'all') {
+
+    restCheckboxes.forEach(function(checkbox) {
+      if (checkbox.checked === true) {
+        checkbox.checked = false;
+
+
+      }
+    });
+    activities_total_cost.innerHTML = '';
+    activities_total_cost.innerHTML = `$ 200`
+
+  } else {
+
+         mainCheckbox.checked = false;
+         const eventDate = checkbox.nextElementSibling.nextElementSibling;
+
+
+     }
+});
+
+
+
+
 
 // Payment Methods
 
