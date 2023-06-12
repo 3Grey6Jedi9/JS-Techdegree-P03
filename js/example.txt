@@ -1,16 +1,27 @@
-if (checkbox.checked) {
+// Notifying in real time if the data you are entering in the credit card number box is wrong
 
-        partial_costs.push(cost)
-    } else  {
-        const index = partial_costs.indexOf(cost);
+card_Number.addEventListener('keyup', function(event){
 
-      partial_costs.splice(index, 1);
+
+    const userInput = event.target.value;
+    const pattern1 = /^\d{0,16}$/;
+    const pattern2 = /^[\d]{13,16}$/m;
+
+        if (!pattern1.test(userInput)){
+
+         card_Number.parentElement.classList.add('not-valid');
+        card_Number.parentElement.classList.remove('valid');
+        const hintElement = card_Number.parentElement.querySelector('.hint');
+        hintElement.style.display = 'block';
+
+        } else if (pattern2.test(userInput)) {
+
+            card_Number.parentElement.classList.add('valid');
+            card_Number.parentElement.classList.remove('not-valid');
+            const hintElement = card_Number.parentElement.querySelector('.hint');
+            hintElement.style.display = 'none';
 
     }
 
-    let sum = 0;
-    for (let i=0; i<partial_costs.length; i++) {
+})
 
-        sum += partial_costs[i];
-
-    }

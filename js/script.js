@@ -173,10 +173,21 @@ const payment_method = document.querySelector('.payment-methods #payment');
 const credit_card = document.getElementById('credit-card');
 const paypal = document.getElementById('paypal');
 const bitcoin = document.getElementById('bitcoin');
+const card_Number = document.getElementById('cc-num');
+const zipCode = document.getElementById('zip');
+const cvv = document.getElementById('cvv');
+const expYear = document.getElementById('exp-year');
+const expDate = document.getElementById('exp-month')
 
 credit_card.style.display= "block";
 paypal.style.display = "none";
 bitcoin.style.display = "none";
+card_Number.disabled = true;
+zipCode.disabled = true;
+cvv.disabled = true;
+expDate.disabled = true;
+expYear.disabled = true;
+
 
 
 payment_method.addEventListener('change', function(){
@@ -188,6 +199,11 @@ payment_method.addEventListener('change', function(){
             credit_card.style.display= "block";
             paypal.style.display = "none";
             bitcoin.style.display = "none";
+            card_Number.disabled = false;
+            zipCode.disabled = false;
+            cvv.disabled = false;
+            expDate.disabled = false;
+            expYear.disabled = false;
             break;
         case "paypal":
             credit_card.style.display= "none";
@@ -199,18 +215,10 @@ payment_method.addEventListener('change', function(){
             paypal.style.display = "none";
             bitcoin.style.display = "block";
             break;
-        default:
-            credit_card.style.display= "block";
-            paypal.style.display = "none";
-            bitcoin.style.display = "none";
-            break;
 
 }
 
 })
-
-
-
 
 
 
@@ -225,9 +233,8 @@ const nameInput = document.getElementById("name");
 const emailInput = document.getElementById('email')
 const activities_checkboxes = document.querySelectorAll('#activities input[type="checkbox"]');
 let anyChecked = false;
-const card_Number = document.getElementById('cc-num');
-const zipCode = document.getElementById('zip');
-const cvv = document.getElementById('cvv');
+
+
 
 // Checking if there is at least one activity checked
 
@@ -393,6 +400,58 @@ submitButton.addEventListener('click', function(event){
 })
 
 // End of the function that manages the submition
+
+
+
+
+// Notifying in real time if the data you are entering the credit card number box is wrong
+
+// Maybe I call put all that code inside a function
+
+
+card_Number.addEventListener('keyup', function (event) {
+
+
+    const userInput = event.target.value;
+    const pattern1 = /^\d{0,16}$/;
+    const pattern2 = /^[\d]{13,16}$/m;
+
+    if (!pattern1.test(userInput)) {
+
+        card_Number.parentElement.classList.add('not-valid');
+        card_Number.parentElement.classList.remove('valid');
+        const hintElement = card_Number.parentElement.querySelector('.hint');
+        hintElement.style.display = 'block';
+
+
+    }  else if (pattern2.test(userInput)) {
+
+        card_Number.parentElement.classList.add('valid');
+        card_Number.parentElement.classList.remove('not-valid');
+        const hintElement = card_Number.parentElement.querySelector('.hint');
+        hintElement.style.display = 'none';
+
+    } else if (pattern1.test(userInput)) {
+
+        card_Number.parentElement.classList.remove('not-valid');
+        const hintElement = card_Number.parentElement.querySelector('.hint');
+        hintElement.style.display = 'none';
+
+
+    }
+
+});
+
+
+
+
+
+
+
+
+
+
+
 
 
 // Auxiliary functions for submitting
