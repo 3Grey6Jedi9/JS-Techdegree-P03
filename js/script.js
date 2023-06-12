@@ -262,8 +262,14 @@ activities_checkboxes.forEach(function (checkbox){
 // Submitting the form and  Visual Validation Errors
 
 
+let clickCount = 0;
+let errorMessage = document.createElement('span');
+errorMessage.classList.add('error-message');
+let currentErrorMessage = '';
+
 submitButton.addEventListener('click', function(event){
 
+    clickCount++;
 
     if (nameInput.value === '') { // Managing Errors associated with name
 
@@ -272,6 +278,13 @@ submitButton.addEventListener('click', function(event){
          nameInput.parentElement.classList.remove('valid');
          const hintElement = nameInput.parentElement.querySelector('.hint');
          hintElement.style.display = 'block';
+         if (clickCount===1) {
+         currentErrorMessage = 'It looks like you are not ready to submit yet';
+      } else {
+       currentErrorMessage = 'Please pay attention to each field';
+       }
+         errorMessage.textContent = currentErrorMessage;
+         submitButton.insertAdjacentElement('beforebegin', errorMessage);
 
     } else {
 

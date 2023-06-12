@@ -636,3 +636,10 @@ button:hover {
     width: 160px;
   }
 }
+
+.error-message {
+  display: inline;
+  margin-bottom: 20px;
+  margin-left: 10px;
+  color: red;
+}
