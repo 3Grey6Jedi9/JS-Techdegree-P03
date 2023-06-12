@@ -449,11 +449,6 @@ card_Number.addEventListener('keyup', function (event) {
 
 
 
-
-
-
-
-
 // Auxiliary functions for submitting
 
 function isEmailValid(email) {
