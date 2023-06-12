@@ -5,6 +5,9 @@ nameInpupt.focus();
 
 })
 
+
+// Other job block
+
 const other_job = document.getElementById("title");
 
 const other_job_role = document.getElementById("other-job-role");
@@ -27,6 +30,11 @@ other_job.addEventListener("change", function(){
 
 
 })
+
+
+
+
+
 
 
 // T-shirt Info Section
@@ -70,6 +78,11 @@ design.addEventListener("change", function(){
 
 
 })
+
+
+
+
+
 
 
 // Providing life to the 'Activities Section'
@@ -150,6 +163,10 @@ activities.addEventListener('change', function(){
 
 
 
+
+
+
+
 // Payment Methods
 
 const payment_method = document.querySelector('.payment-methods #payment');
@@ -193,6 +210,13 @@ payment_method.addEventListener('change', function(){
 })
 
 
+
+
+
+
+
+
+
 // Form Validation
 
 
@@ -220,6 +244,12 @@ activities_checkboxes.forEach(function (checkbox){
     })
 
 })
+
+
+
+
+
+
 
 
 // Submitting the form and  Visual Validation Errors
@@ -364,6 +394,9 @@ submitButton.addEventListener('click', function(event){
 
 // End of the function that manages the submition
 
+
+// Auxiliary functions for submitting
+
 function isEmailValid(email) {
 
     const email_pattern = /[\w\-.]+@[a-zA-Z\d\-]+(\.[a-zA-Z\d\-]+)*\.[a-zA-Z]{2,}/;
@@ -392,6 +425,11 @@ function isCVValid(cvv){
 
 
 }
+
+
+
+
+
 
 // Making the Activities Section more accessible
 
