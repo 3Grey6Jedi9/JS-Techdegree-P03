@@ -121,6 +121,22 @@ activities.addEventListener('change', function(){
 
          mainCheckbox.checked = false;
          const eventDate = checkbox.nextElementSibling.nextElementSibling;
+         console.log(eventDate.textContent)
+         restCheckboxes.forEach(function(otherCheckbox){
+
+             if (checkbox !== otherCheckbox) {
+
+                 if (eventDate.textContent === otherCheckbox.nextElementSibling.nextElementSibling.textContent){
+
+                     otherCheckbox.checked = false;
+
+
+
+                 }
+
+             }
+
+         })
 
 
      }
