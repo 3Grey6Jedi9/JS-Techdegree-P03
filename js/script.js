@@ -212,9 +212,17 @@ submitButton.addEventListener('click', function(event){
         if (anyChecked === false) {
 
         event.preventDefault();
+        activities.classList.add('not-valid');
+        activities.classList.remove('valid');
 
 
-    } else {}
+    } else {
+
+            activities.classList.add('valid');
+            activities.classList.remove('not-valid');
+
+
+        }
 
 
         if (payment_method.value === 'select method') {
