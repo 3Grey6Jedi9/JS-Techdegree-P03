@@ -81,23 +81,7 @@ let partial_costs = [];
 activities.addEventListener('change', function(){
     const checkbox = event.target;
     const cost = parseInt(checkbox.dataset.cost)
-    if (checkbox.checked) {
 
-        partial_costs.push(cost)
-    } else  {
-        const index = partial_costs.indexOf(cost);
-
-      partial_costs.splice(index, 1);
-
-    }
-
-    let sum = 0;
-    for (let i=0; i<partial_costs.length; i++) {
-
-        sum += partial_costs[i];
-
-    }
-    activities_total_cost.innerHTML = `$ ${sum}`
 
     const restCheckboxes = Array.from(activities.getElementsByTagName('input')).filter(function(checkbox) {
       return checkbox.name !== 'all';
@@ -114,8 +98,8 @@ activities.addEventListener('change', function(){
 
       }
     });
-    activities_total_cost.innerHTML = '';
-    activities_total_cost.innerHTML = `$ 200`
+
+    activities_total_cost.innerHTML = `Total: $${cost}`;
 
   } else {
 
@@ -130,19 +114,40 @@ activities.addEventListener('change', function(){
 
                      otherCheckbox.checked = false;
 
-
-
                  }
 
              }
 
          })
 
+         restCheckboxes.forEach(function(otherCheckbox) {
 
+             let partialCost = parseInt(otherCheckbox.dataset.cost)
+
+             if (otherCheckbox.checked) {
+
+                 partial_costs.push(partialCost)
+
+
+             }
+
+
+         })
+
+         let sum = 0;
+         for (let i=0; i<partial_costs.length; i++) {
+
+        sum += partial_costs[i];
+
+    }
+
+          activities_total_cost.innerHTML = `Total: $${sum}`;
+          partial_costs = [];
      }
 });
 
 
+// End of the activities section
 
 
 

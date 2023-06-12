@@ -1,0 +1,16 @@
+if (checkbox.checked) {
+
+        partial_costs.push(cost)
+    } else  {
+        const index = partial_costs.indexOf(cost);
+
+      partial_costs.splice(index, 1);
+
+    }
+
+    let sum = 0;
+    for (let i=0; i<partial_costs.length; i++) {
+
+        sum += partial_costs[i];
+
+    }
