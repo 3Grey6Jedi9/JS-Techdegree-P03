@@ -261,6 +261,7 @@ let clickCount = 0;
 let errorMessage = document.createElement('span');
 errorMessage.classList.add('error-message');
 let currentErrorMessage = '';
+const submitButton = document.querySelector('button');
 
 submitForm.addEventListener('submit', function(event) {
   event.preventDefault();
