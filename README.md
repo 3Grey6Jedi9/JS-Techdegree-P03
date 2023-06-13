@@ -4,7 +4,7 @@
 
 EXTRA CREDIT 
 
-2) Real-Time Error Messages 
+2) 'Card Number' field validates in real time.
 
 I decided to program the credit card number field to detect or listen for possible errors as well to confirm in real time that 
 the credit card number entered has a porper format. 
