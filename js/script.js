@@ -217,7 +217,7 @@ payment_method.addEventListener('change', function(){
 // Form Validation
 
 
-const submitButton = document.querySelector('form button[type="submit"]');
+const submitForm = document.querySelector('form');
 const nameInput = document.getElementById("name");
 const emailInput = document.getElementById('email')
 const activities_checkboxes = document.querySelectorAll('#activities input[type="checkbox"]');
@@ -251,155 +251,138 @@ activities_checkboxes.forEach(function (checkbox){
 // Submitting the form and  Visual Validation Errors
 
 
+
 let clickCount = 0;
 let errorMessage = document.createElement('span');
 errorMessage.classList.add('error-message');
 let currentErrorMessage = '';
 
-submitButton.addEventListener('click', function(event){
+submitForm.addEventListener('submit', function(event) {
+  event.preventDefault();
 
-    clickCount++;
+  let errorFound = false;
 
-    if (nameInput.value === '') { // Managing Errors associated with name
+  // Check Name field
+  if (nameInput.value === '') {
+    nameInput.parentElement.classList.add('not-valid');
+    nameInput.parentElement.classList.remove('valid');
+    const hintElement = nameInput.parentElement.querySelector('.hint');
+    hintElement.style.display = 'block';
+    errorFound = true;
+  } else {
+    nameInput.parentElement.classList.add('valid');
+    nameInput.parentElement.classList.remove('not-valid');
+    const hintElement = nameInput.parentElement.querySelector('.hint');
+    hintElement.style.display = 'none';
+  }
 
-         event.preventDefault();
-         nameInput.parentElement.classList.add('not-valid');
-         nameInput.parentElement.classList.remove('valid');
-         const hintElement = nameInput.parentElement.querySelector('.hint');
-         hintElement.style.display = 'block';
-         if (clickCount===1) {
-         currentErrorMessage = 'It looks like you are not ready to submit yet';
-      } else {
-       currentErrorMessage = 'Please pay attention to each field';
-       }
-         errorMessage.textContent = currentErrorMessage;
-         submitButton.insertAdjacentElement('beforebegin', errorMessage);
+  // Check Email field
+  if (isEmailValid(emailInput.value) === false) {
+    emailInput.parentElement.classList.add('not-valid');
+    emailInput.parentElement.classList.remove('valid');
+    const hintElement = emailInput.parentElement.querySelector('.hint');
+    hintElement.style.display = 'block';
+    errorFound = true;
+  } else {
+    emailInput.parentElement.classList.add('valid');
+    emailInput.parentElement.classList.remove('not-valid');
+    const hintElement = emailInput.parentElement.querySelector('.hint');
+    hintElement.style.display = 'none';
+  }
 
+  // Check Checkbox activities
+  if (anyChecked === false) {
+    activities.classList.add('not-valid');
+    activities.classList.remove('valid');
+    const hintElement = activities.querySelector('.hint');
+    hintElement.style.display = 'block';
+    errorFound = true;
+  } else {
+    activities.classList.add('valid');
+    activities.classList.remove('not-valid');
+    const hintElement = activities.querySelector('.hint');
+    hintElement.style.display = 'none';
+  }
+
+  // Check Payment Method
+  if (payment_method.value === 'select method') {
+    payment_method.parentElement.classList.add('not-valid');
+    payment_method.parentElement.classList.remove('valid');
+    errorFound = true;
+  } else {
+    payment_method.parentElement.classList.add('valid');
+    payment_method.parentElement.classList.remove('not-valid');
+  }
+
+  // Check Credit Card fields
+  if (payment_method.value === 'credit-card') {
+    if (isCardNumberValid(card_Number.value) === false) {
+      card_Number.parentElement.classList.add('not-valid');
+      card_Number.parentElement.classList.remove('valid');
+      const hintElement = card_Number.parentElement.querySelector('.hint');
+      hintElement.style.display = 'block';
+      errorFound = true;
     } else {
-
-        nameInput.parentElement.classList.add('valid');
-        nameInput.parentElement.classList.remove('not-valid');
-        const hintElement = nameInput.parentElement.querySelector('.hint');
-        hintElement.style.display = 'none';
-
+      card_Number.parentElement.classList.add('valid');
+      card_Number.parentElement.classList.remove('not-valid');
+      const hintElement = card_Number.parentElement.querySelector('.hint');
+      hintElement.style.display = 'none';
     }
 
-        if (isEmailValid(emailInput.value) === false) { // Managing the email errors
-
-        event.preventDefault();
-        emailInput.parentElement.classList.add('not-valid');
-        emailInput.parentElement.classList.remove('valid');
-        const hintElement = emailInput.parentElement.querySelector('.hint');
-        hintElement.style.display = 'block';
-
-
+    if (isZipValid(zipCode.value) === false) {
+      zipCode.parentElement.classList.add('not-valid');
+      zipCode.parentElement.classList.remove('valid');
+      const hintElement = zipCode.parentElement.querySelector('.hint');
+      hintElement.style.display = 'block';
+      errorFound = true;
     } else {
+      zipCode.parentElement.classList.add('valid');
+      zipCode.parentElement.classList.remove('not-valid');
+      const hintElement = zipCode.parentElement.querySelector('.hint');
+      hintElement.style.display = 'none';
+    }
 
-            emailInput.parentElement.classList.add('valid');
-            emailInput.parentElement.classList.remove('not-valid');
-            const hintElement = emailInput.parentElement.querySelector('.hint');
-            hintElement.style.display = 'none';
-
-
-
-        }
-
-
-        if (anyChecked === false) { // Managing the checkboxes activities Errors
-
-        event.preventDefault();
-        activities.classList.add('not-valid');
-        activities.classList.remove('valid');
-        const hintElement = activities.querySelector('.hint');
-        hintElement.style.display = 'block';
-
-
+    // Check CVV field
+    if (isCVValid(cvv.value) === false) {
+      cvv.parentElement.classList.add('not-valid');
+      cvv.parentElement.classList.remove('valid');
+      const hintElement = cvv.parentElement.querySelector('.hint');
+      hintElement.style.display = 'block';
+      errorFound = true;
     } else {
-
-            activities.classList.add('valid');
-            activities.classList.remove('not-valid');
-            const hintElement = activities.querySelector('.hint');
-            hintElement.style.display = 'none';
-
-
-        }
-
-
-        if (payment_method.value === 'select method') { // Managing the payment method Errors
-
-            event.preventDefault();
-            payment_method.parentElement.classList.add('not-valid');
-            payment_method.parentElement.classList.remove('valid');
-
-
-
-        }  else {
-
-            payment_method.parentElement.classList.add('valid');
-            payment_method.parentElement.classList.remove('not-valid');
-
-            if (payment_method.value === 'credit-card' && isCardNumberValid(card_Number.value) === false) { // Managing Card Numbers Errors
-
-        event.preventDefault();
-        card_Number.parentElement.classList.add('not-valid');
-        card_Number.parentElement.classList.remove('valid');
-        const hintElement = card_Number.parentElement.querySelector('.hint');
-        hintElement.style.display = 'block';
-
-
-    } else {
-
-            card_Number.parentElement.classList.add('valid');
-            card_Number.parentElement.classList.remove('not-valid');
-            const hintElement = card_Number.parentElement.querySelector('.hint');
-            hintElement.style.display = 'none';
-
-        }
-
-        if (payment_method.value === 'credit-card' && isZipValid(zipCode.value) === false) { // Managing Zip Code Errors
-
-        event.preventDefault();
-        zipCode.parentElement.classList.add('not-valid');
-        zipCode.parentElement.classList.remove('valid');
-        const hintElement = zipCode.parentElement.querySelector('.hint');
-        hintElement.style.display = 'block';
-
-
-
-    } else {
-
-            zipCode.parentElement.classList.add('valid');
-            zipCode.parentElement.classList.remove('not-valid');
-            const hintElement = zipCode.parentElement.querySelector('.hint');
-            hintElement.style.display = 'none';
-
-
-        }
-
-
-        if (payment_method.value === 'credit-card' && isCVValid(cvv.value) === false) { // Managing the cvv Errors
-
-        event.preventDefault();
-        cvv.parentElement.classList.add('not-valid');
-        cvv.parentElement.classList.remove('valid');
-        const hintElement = cvv.parentElement.querySelector('.hint');
-        hintElement.style.display = 'block';
-
-    } else {
-
-            cvv.parentElement.classList.add('valid');
-            cvv.parentElement.classList.remove('not-valid');
+      cvv.parentElement.classList.add('valid');
+      cvv.parentElement.classList.remove('not-valid');
             const hintElement = cvv.parentElement.querySelector('.hint');
-            hintElement.style.display = 'none';
+      hintElement.style.display = 'none';
+    }
+  }
 
-        }
+  if (errorFound) {
+    if (clickCount === 1) {
+      currentErrorMessage = 'It looks like you are not ready to submit yet';
+    } else {
+      currentErrorMessage = 'Please pay attention to each field';
+    }
+    errorMessage.textContent = currentErrorMessage;
+    submitButton.insertAdjacentElement('beforebegin', errorMessage);
+  } else {
+    // If no errors found, proceed with form submission
+    submitForm.submit();
+  }
+});
 
 
 
-        }
 
 
-})
+
+
+
+
+
+
+
+
 
 // End of the function that manages the submition
 
