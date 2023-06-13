@@ -1,1 +1,1 @@
-
+<span id="cc-hint" class="Please you can not enter any letters nor symbols only numbers</span>

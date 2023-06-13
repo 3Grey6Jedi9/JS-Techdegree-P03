@@ -392,35 +392,54 @@ submitForm.addEventListener('submit', function(event) {
 // Notifying in real time if the data you are entering the credit card number box is wrong
 
 
+const newHintElement = document.createElement('span');
+newHintElement.id = 'w-hint';
+newHintElement.classList.add('hint');
+newHintElement.textContent = 'Please you can not enter any letters or symbols only numbers';
+const hintElement = card_Number.parentElement.querySelector('.hint');
+hintElement.insertAdjacentElement('afterend', newHintElement);
+const SelectnewHintElement =  hintElement.nextElementSibling;
+
 
 card_Number.addEventListener('keyup', function (event) {
 
 
     const userInput = event.target.value;
-    const pattern1 = /^\d{0,16}$/;
+    const pattern1 = /^\d{17,}$/;
     const pattern2 = /^[\d]{13,16}$/m;
+    const pattern3 = /[^\d]+/;
 
-    if (!pattern1.test(userInput)) {
+
+
+    if (pattern1.test(userInput)) {
 
         card_Number.parentElement.classList.add('not-valid');
         card_Number.parentElement.classList.remove('valid');
-        const hintElement = card_Number.parentElement.querySelector('.hint');
         hintElement.style.display = 'block';
+        SelectnewHintElement.style.display = 'none';
 
 
     }  else if (pattern2.test(userInput)) {
 
         card_Number.parentElement.classList.add('valid');
         card_Number.parentElement.classList.remove('not-valid');
-        const hintElement = card_Number.parentElement.querySelector('.hint');
+        hintElement.style.display = 'none';
+        SelectnewHintElement.style.display = 'none';
+
+    } else if (pattern3.test(userInput)) {
+
+        card_Number.parentElement.classList.add('not-valid');
+        card_Number.parentElement.classList.remove('valid');
+        SelectnewHintElement.style.display = 'block';
         hintElement.style.display = 'none';
 
-    } else if (pattern1.test(userInput)) {
+
+    } else {
 
         card_Number.parentElement.classList.remove('not-valid');
-        const hintElement = card_Number.parentElement.querySelector('.hint');
+        card_Number.parentElement.classList.remove('valid');
+        SelectnewHintElement.style.display = 'none';
         hintElement.style.display = 'none';
-
 
     }
 
