@@ -90,6 +90,8 @@ design.addEventListener("change", function(){
 const activities = document.getElementById('activities');
 const activities_total_cost = document.getElementById('activities-cost');
 let partial_costs = [];
+const activitiesCheckboxes = Array.from(activities.getElementsByTagName('input'));
+
 
 activities.addEventListener('change', function(){
     const checkbox = event.target;
@@ -102,29 +104,15 @@ activities.addEventListener('change', function(){
 
     const mainCheckbox = activities.querySelector('input[name="all"]');
 
-     if (checkbox.name === 'all') {
 
-    restCheckboxes.forEach(function(checkbox) {
-      if (checkbox.checked === true) {
-        checkbox.checked = false;
+    const eventDate = checkbox.nextElementSibling.nextElementSibling;
+    restCheckboxes.forEach(function(otherCheckbox){
 
+        if (checkbox !== otherCheckbox) {
 
-      }
-    });
+            if (eventDate.textContent === otherCheckbox.nextElementSibling.nextElementSibling.textContent){
 
-    activities_total_cost.innerHTML = `Total: $${cost}`;
-
-  } else {
-
-         mainCheckbox.checked = false;
-         const eventDate = checkbox.nextElementSibling.nextElementSibling;
-         restCheckboxes.forEach(function(otherCheckbox){
-
-             if (checkbox !== otherCheckbox) {
-
-                 if (eventDate.textContent === otherCheckbox.nextElementSibling.nextElementSibling.textContent){
-
-                     otherCheckbox.checked = false;
+                otherCheckbox.checked = false;
 
                  }
 
@@ -132,17 +120,18 @@ activities.addEventListener('change', function(){
 
          })
 
-         restCheckboxes.forEach(function(otherCheckbox) {
+                    // Coding the total prize
 
-             let partialCost = parseInt(otherCheckbox.dataset.cost)
+         activitiesCheckboxes.forEach(function(Checkbox) {
 
-             if (otherCheckbox.checked) {
+             let partialCost = parseInt(Checkbox.dataset.cost)
+
+             if (Checkbox.checked) {
 
                  partial_costs.push(partialCost)
 
 
              }
-
 
          })
 
@@ -155,7 +144,7 @@ activities.addEventListener('change', function(){
 
           activities_total_cost.innerHTML = `Total: $${sum}`;
           partial_costs = [];
-     }
+
 });
 
 
@@ -453,7 +442,6 @@ card_Number.addEventListener('keyup', function (event) {
     }
 
 });
-
 
 
 
