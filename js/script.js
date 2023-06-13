@@ -175,11 +175,12 @@ paypal.style.display = "none"; // By default
 bitcoin.style.display = "none"; // // By default
 // I want to disable by default the credit card elements, so they only activate when the user select credit card as the method of payment.
 // I think it looks better this way. Otherwise, the 'Select Payment Method' won't play any role.
-card_Number.disabled = true;
-zipCode.disabled = true;
-cvv.disabled = true;
-expDate.disabled = true;
-expYear.disabled = true;
+// I will put them as false as a default value, but I am leaving the code just in case someone wants to change it.
+card_Number.disabled = false;
+zipCode.disabled = false;
+cvv.disabled = false;
+expDate.disabled = false;
+expYear.disabled = false;
 
 
 // Managing the payment methods
