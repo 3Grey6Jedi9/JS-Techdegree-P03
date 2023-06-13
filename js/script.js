@@ -50,9 +50,9 @@ color.innerHTML = `<option selected hidden>Select a design theme above</option>`
 
 design.addEventListener("change", function(){
 
-    colorSelect.disabled = false;
+    colorSelect.disabled = false; // Once I choose a design I will be able to select the color
 
-    switch (design.value) {
+    switch (design.value) { // I will display a set of options according to the design value
 
         case "js puns":
             color.innerHTML = '';
@@ -90,7 +90,8 @@ design.addEventListener("change", function(){
 const activities = document.getElementById('activities');
 const activities_total_cost = document.getElementById('activities-cost');
 let partial_costs = [];
-const activitiesCheckboxes = Array.from(activities.getElementsByTagName('input'));
+const activitiesCheckboxes = Array.from(activities.getElementsByTagName('input')); // This will be useful when calculating the total prize
+
 
 
 activities.addEventListener('change', function(){
@@ -100,11 +101,12 @@ activities.addEventListener('change', function(){
 
     const restCheckboxes = Array.from(activities.getElementsByTagName('input')).filter(function(checkbox) {
       return checkbox.name !== 'all';
-    });
+    }); // I will need this to compare those date's events later
 
     const mainCheckbox = activities.querySelector('input[name="all"]');
 
 
+    // Here I am going to make sure that I do not generate a conflict because of the schedules
     const eventDate = checkbox.nextElementSibling.nextElementSibling;
     restCheckboxes.forEach(function(otherCheckbox){
 
@@ -120,7 +122,7 @@ activities.addEventListener('change', function(){
 
          })
 
-                    // Coding the total prize
+                    // Calculating the total prize
 
          activitiesCheckboxes.forEach(function(Checkbox) {
 
@@ -168,9 +170,11 @@ const cvv = document.getElementById('cvv');
 const expYear = document.getElementById('exp-year');
 const expDate = document.getElementById('exp-month')
 
-credit_card.style.display= "block";
-paypal.style.display = "none";
-bitcoin.style.display = "none";
+credit_card.style.display= "block"; // // By default
+paypal.style.display = "none"; // By default
+bitcoin.style.display = "none"; // // By default
+// I want to disable by default the credit card elements, so they only activate when the user select credit card as the method of payment.
+// I think it looks better this way. Otherwise, the 'Select Payment Method' won't play any role.
 card_Number.disabled = true;
 zipCode.disabled = true;
 cvv.disabled = true;
@@ -178,6 +182,7 @@ expDate.disabled = true;
 expYear.disabled = true;
 
 
+// Managing the payment methods
 
 payment_method.addEventListener('change', function(){
 
@@ -213,8 +218,7 @@ payment_method.addEventListener('change', function(){
 
 
 
-
-// Form Validation
+                                                    //  *** FORM VALIDATION ***
 
 
 const submitForm = document.querySelector('form');
@@ -222,6 +226,7 @@ const nameInput = document.getElementById("name");
 const emailInput = document.getElementById('email')
 const activities_checkboxes = document.querySelectorAll('#activities input[type="checkbox"]');
 let anyChecked = false;
+
 
 
 
@@ -262,7 +267,7 @@ submitForm.addEventListener('submit', function(event) {
 
   let errorFound = false;
 
-  // Check Name field
+  // Checking Name's field
   if (nameInput.value === '') {
     nameInput.parentElement.classList.add('not-valid');
     nameInput.parentElement.classList.remove('valid');
@@ -276,7 +281,7 @@ submitForm.addEventListener('submit', function(event) {
     hintElement.style.display = 'none';
   }
 
-  // Check Email field
+  // Checking Email's field
   if (isEmailValid(emailInput.value) === false) {
     emailInput.parentElement.classList.add('not-valid');
     emailInput.parentElement.classList.remove('valid');
@@ -290,7 +295,7 @@ submitForm.addEventListener('submit', function(event) {
     hintElement.style.display = 'none';
   }
 
-  // Check Checkbox activities
+  // Checking Checkbox activities
   if (anyChecked === false) {
     activities.classList.add('not-valid');
     activities.classList.remove('valid');
@@ -304,7 +309,7 @@ submitForm.addEventListener('submit', function(event) {
     hintElement.style.display = 'none';
   }
 
-  // Check Payment Method
+  // Checking Payment Method
   if (payment_method.value === 'select method') {
     payment_method.parentElement.classList.add('not-valid');
     payment_method.parentElement.classList.remove('valid');
@@ -314,7 +319,7 @@ submitForm.addEventListener('submit', function(event) {
     payment_method.parentElement.classList.remove('not-valid');
   }
 
-  // Check Credit Card fields
+  // Checking Credit Card fields
   if (payment_method.value === 'credit-card') {
     if (isCardNumberValid(card_Number.value) === false) {
       card_Number.parentElement.classList.add('not-valid');
@@ -342,7 +347,7 @@ submitForm.addEventListener('submit', function(event) {
       hintElement.style.display = 'none';
     }
 
-    // Check CVV field
+    // Checking CVV field
     if (isCVValid(cvv.value) === false) {
       cvv.parentElement.classList.add('not-valid');
       cvv.parentElement.classList.remove('valid');
@@ -366,12 +371,13 @@ submitForm.addEventListener('submit', function(event) {
     errorMessage.textContent = currentErrorMessage;
     submitButton.insertAdjacentElement('beforebegin', errorMessage);
   } else {
-    // If no errors found, proceed with form submission
+    // If there are no errors, we can proceed with the form submission
     submitForm.submit();
   }
 });
 
 
+// End of the eventlistener that manages the form submission
 
 
 
@@ -379,12 +385,6 @@ submitForm.addEventListener('submit', function(event) {
 
 
 
-
-
-
-
-
-// End of the function that manages the submition
 
 
 
@@ -405,9 +405,9 @@ card_Number.addEventListener('keyup', function (event) {
 
 
     const userInput = event.target.value;
-    const pattern1 = /^\d{17,}$/;
-    const pattern2 = /^[\d]{13,16}$/m;
-    const pattern3 = /[^\d]+/;
+    const pattern1 = /^\d{17,}$/; // If you enter too much numbers
+    const pattern2 = /^[\d]{13,16}$/m; // If you enter the right amount of numbers
+    const pattern3 = /[^\d]+/; // If you enter a wrong character
 
 
 
@@ -450,8 +450,7 @@ card_Number.addEventListener('keyup', function (event) {
 
 
 
-
-// Auxiliary functions for submitting
+// Auxiliary functions for submitting. Here I define the patterns that the inputs must verify.
 
 function isEmailValid(email) {
 
@@ -481,6 +480,9 @@ function isCVValid(cvv){
 
 
 }
+
+
+
 
 
 
