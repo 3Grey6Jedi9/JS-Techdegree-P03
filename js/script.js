@@ -419,7 +419,6 @@ submitButton.addEventListener('click', function(event){
 
 // Notifying in real time if the data you are entering the credit card number box is wrong
 
-// Maybe I call put all that code inside a function
 
 
 card_Number.addEventListener('keyup', function (event) {
