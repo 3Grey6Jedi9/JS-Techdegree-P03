@@ -161,6 +161,7 @@ activities.addEventListener('change', function(){
 // Payment Methods
 
 const payment_method = document.querySelector('.payment-methods #payment');
+payment_method.value = "credit-card";
 const credit_card = document.getElementById('credit-card');
 const paypal = document.getElementById('paypal');
 const bitcoin = document.getElementById('bitcoin');
